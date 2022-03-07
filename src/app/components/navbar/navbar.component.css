@@ -1,0 +1,20 @@
+.navbar-expand {
+    background-color: black !important;
+    width: 100% !important;
+}
+
+.navbar {
+    background-color: black !important;
+}
+
+.nav-link {
+    color: white;
+}
+
+.form-control {
+    background-color: white;
+}
+
+.logOut {
+    margin-right: 50px !important;
+}

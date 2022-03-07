@@ -1,0 +1,42 @@
+<div class="text-center">
+    <br>
+    <h1>Informacion del libro</h1>
+    <hr>
+</div>
+<div class="row mt-5" *ngIf="libro">
+    <div class="col-6 text-center">
+        <img [src]="libro.volumeInfo.imageLinks.thumbnail" alt="" width="400" height="500">
+
+    </div>
+    <div class="col-6 text-center">
+        <h2>{{libro.volumeInfo.title}}</h2>
+        <p>{{libro.volumeInfo.description}} </p>
+        <div>
+            <input (click)="openPopup()" class="btn btn-primary btn-block" type="submit" value="Pedir libro" />
+        </div>
+        <br>
+    </div>
+
+</div>
+<!-- Modal para pedir libro -->
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header ">
+                <h4 class="modal-title ">La verdad que no se que poner acá</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="text-center">
+                        <p>¿Desea pedir prestado este libro?</p>
+                        <input (click)=" agregarLibrosIngreasados() ; guardarPrestamo() ; guardarInfoLibro(); closePopup()" class="btn btn-alert btn-warning" type="button" value="Pedir libro" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="closePopup()">No, me arrepentí</button>
+            </div>
+        </div>
+    </div>
+</div>

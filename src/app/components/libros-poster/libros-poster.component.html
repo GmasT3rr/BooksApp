@@ -1,0 +1,21 @@
+<div class="container libros-poster ">
+    <div class="row">
+        <div class="col-md-4 mb-5 mt-5" *ngFor="let libro of libros">
+            <img (click)="clickEnLibro(libro) " class="img-fluid libros-poster-image " src="http://books.google.com/books/content?id={{libro.id}}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api " alt=" ">
+            <div>
+                <hr>
+                <br>
+                <h3>{{libro.volumeInfo.title }}</h3>
+                <ng-template [ngIf]="libro.volumeInfo.description ">
+                    <p>{{libro.volumeInfo.description | slice:0:100 }}...</p>
+                </ng-template>
+                <ng-template [ngIf]="!libro.volumeInfo.description ">
+                    <p>*Lo sentimos, este libro no posee una descripcion*</p>
+                </ng-template>
+            </div>
+            <div>
+                <input (click)="clickEnLibro(libro) " class="btn btn-primary btn-block " type="submit " value="Mas info " />
+            </div>
+        </div>
+    </div>
+</div>

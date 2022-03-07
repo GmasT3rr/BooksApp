@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "applibros-ramallo": {
+      "hosting": {
+        "appLibros": [
+          "applibros-ramallo"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "applibros-ramallo"
+  }
+}

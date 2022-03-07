@@ -1,0 +1,17 @@
+.swiper-container {
+    height: auto;
+    width: auto;
+}
+
+.swiper-slide {
+    height: 350px;
+    width: 100%;
+}
+
+.libro-descripcion {
+    background-color: rgb(0, 0, 0, 0.4);
+    bottom: 0;
+    padding: 5px 30px;
+    position: absolute;
+    width: 100%;
+}

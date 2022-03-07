@@ -1,0 +1,48 @@
+<div>
+    <br>
+    <h1>Datos de la cuenta:</h1>
+    <hr>
+</div>
+<div class="container  ">
+    <div class="row">
+        <div class="col-md-3 " *ngFor="let usuario of usuarioEnFirebase">
+            <div class="row">
+                <p> <b>Nombre:</b> {{usuario.nombre }} {{usuario.apellido}}</p>
+                <p> <b>Email:</b> {{usuario.email}}</p>
+                <p> <b>Usuario:</b> {{usuario.usuario}}</p>
+                <div>
+                    <button class="btn-warning btn" *ngIf="!show" (click)="showMore()">Mostras mas</button>
+                    <div *ngIf="show">
+                        <p> <b>DNI:</b> {{usuario.dni}}</p>
+                        <p> <b>Contraseña:</b> {{usuario.password}}</p>
+                        <p> <b>Telefono:</b> {{usuario.telefono}}</p>
+                        <p> <b>Localidad:</b> {{usuario.localidad}}</p>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn-warning btn" *ngIf="show" (click)="showLess()">Mostras menos</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <br>
+    <h1>Tus libros:</h1>
+    <hr>
+</div>
+
+<div #librosPropios class="container ">
+    <div class="row">
+        <div class="col-md-3 mb-5 " *ngFor="let libro of librosDelUsuario">
+            <div class="row">
+                <img class="img-fluid libros-poster-image" [src]="libro.libro.volumeInfo.imageLinks.smallThumbnail" alt="">
+                <h3>{{libro.libro.volumeInfo.title }}</h3>
+                <p>{{libro.libro.volumeInfo.description | slice:0:100}}...</p>
+                <div>
+                    <input (click)="clickEnLibro(libro)" class="btn btn-primary btn-block " type="submit" value="Mas info" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
