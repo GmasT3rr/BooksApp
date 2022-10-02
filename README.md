@@ -1,6 +1,6 @@
 #DISCLAIMER
 
-Link to te project https://applibros-ramallo.web.app
+Link to the page project: https://applibros-ramallo.web.app
 It doesn't have mobile views done because that would have required me to exceed the deadline, and right now, I'm pretty busy to fix it.
 
 
