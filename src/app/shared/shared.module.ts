@@ -1,23 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SlideshowComponent } from './slideshow/slideshow.component';
 import { SwiperModule } from 'swiper/angular';
 import { BrowserModule } from '@angular/platform-browser';
 import { LibrosPosterComponent } from './libros-poster/libros-poster.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { SlideshowComponent } from './slideshow/slideshow.component';
+
+
 
 @NgModule({
   declarations: [
+    LibrosPosterComponent,
     NavbarComponent,
-    SlideshowComponent,
-    LibrosPosterComponent
+    SlideshowComponent
   ],
   exports:[
-    NavbarComponent,
-    SlideshowComponent,
     LibrosPosterComponent,
+    NavbarComponent,
+    SlideshowComponent
   ],
   imports: [
     CommonModule,
@@ -27,4 +29,4 @@ import { LibrosPosterComponent } from './libros-poster/libros-poster.component';
     BrowserModule
   ]
 })
-export class ComponentsModule { }
+export class SharedModule { }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LibrosService } from '../../services/libros.service';
-import { NavigationExtras, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-libros-poster',
@@ -9,12 +9,11 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class LibrosPosterComponent implements OnInit {
 
-  @Input() libros:any [] = []
+  @Input() books:any [] = []
 
-  constructor(private librosService: LibrosService, private router: Router) { }
+  constructor( private router: Router) { }
 
   ngOnInit(): void {
-    // console.log('libros-poster .items ->',this.libros)
 
   }
 
@@ -22,7 +21,6 @@ export class LibrosPosterComponent implements OnInit {
   clickEnLibro(libro: LibrosService){
     this.idLibro = libro['id']
     this.router.navigateByUrl(`/libro/${this.idLibro}`)
-    console.log('libros-poster id libro',this.idLibro)
   }
     
 }

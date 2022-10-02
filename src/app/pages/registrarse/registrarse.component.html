@@ -1,126 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ramallo Lucas</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/litera/bootstrap.min.css">
-</head>
-
-<body>
-
-    <div class="container p-4">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <div class="text-center">
-                    <h2>Registro</h2>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <form [formGroup]="registerForm" (ngSubmit)="onRegisterDePrueba()">
-
-                            <div class="form-group ">
-                                <p>Nombre</p>
-                                <input type="text" formControlName="nombre" class="form-control" placeholder="Ingrese su nombre" autofocus>
-                                <div class=" alert-danger " *ngIf="nombreInvalido">
-                                    <div class="container-error-message">
-                                        <small>Nombre invalido </small>
-                                    </div>
-                                </div>
+<div class="bg">
+    <div class="row " style="margin-top: 100px;">
+        <div class="col-md-4 offset-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <form [formGroup]="signUpForm" (ngSubmit)="signUp()" class="text-center">
+                        <div class="text-center">
+                            <h3><strong>SIGN UP</strong></h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                              </svg>
+                        </div>
+                        <div class="form-group mt-3 mb-3 col-6 offset-md-3">
+                            <input type="text" formControlName="nombre" class="form-control" placeholder="Nombre">
+                            <div *ngIf="nombreInvalido">
+                                <small style="color: red;">* Ingrese su nombre </small>
                             </div>
-
-                            <div class="form-group ">
-                                <p>Apellido</p>
-                                <input type="text" formControlName="apellido" class="form-control" placeholder="Ingrese su apellido" autofocus>
-                                <div class=" alert-danger " *ngIf="apellidoInvalido">
-                                    <div class="container-error-message">
-                                        <small>Apellido invalido </small>
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="form-group mt-3 mb-3 col-6 offset-md-3">
+                            <input type="text" formControlName="apellido" class="form-control" placeholder="Apellido">
+                            <div *ngIf="apellidoInvalido">
+                                <small style="color: red;">* Ingrese su apellido </small>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <p>Nombre de usuario</p>
-                                <input type="text" formControlName="usuario" class="form-control" placeholder="Ingrese un usuario" autofocus>
-                                <div class=" alert-danger " *ngIf="usuarioInvalido">
-                                    <div class="container-error-message">
-                                        <small>Nombre de usuario invalido </small>
-                                    </div>
-                                </div>
+                        <div class="form-group mt-3 mb-3 col-6 offset-md-3">
+                            <input type="text" formControlName="email" class="form-control" placeholder="Email">
+                            <div *ngIf="emailInvalido">
+                                <small style="color: red;">* Email invalido </small>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <p>Contraseña</p>
-                                <input type="text" formControlName="password" class="form-control" placeholder="Ingrese una contraseña" autofocus>
-                                <div class=" alert-danger " *ngIf="passwordInvalido">
-                                    <div class="container-error-message">
-                                        <small>Contraseña invalido </small>
-                                    </div>
-                                </div>
+                        <div class="form-group mt-3 mb-3 col-6 offset-md-3">
+                            <input type="password" formControlName="password" class="form-control" placeholder="Contraseña">
+                            <div *ngIf="passwordInvalido">
+                                <small style="color: red;">* Contraseña invalida </small>
                             </div>
-
-                            <div class="form-group">
-                                <p>D.N.I</p>
-                                <input type="text" formControlName="dni" class="form-control" placeholder="Ingrese su DNI" autofocus>
-                                <div class=" alert-danger " *ngIf="dniInvalido">
-                                    <div class="container-error-message">
-                                        <small>DNI invalido </small>
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="form-group mt-3 mb-3 col-6 offset-md-3">
+                            <input type="password" formControlName="passwordRepeat" class="form-control" placeholder="Repita la contraseña">
+                            <div *ngIf="passwordRepeatInvalido">
+                                <small style="color: red;">* Contraseña invalida </small>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <p>Email</p>
-                                <input type="text" formControlName="email" class="form-control" placeholder="Ingrese su email" autofocus>
-                                <div class=" alert-danger " *ngIf="emailInvalido">
-                                    <div class="container-error-message">
-                                        <small>Email invalido </small>
-                                    </div>
-                                </div>
-                            </div>
+                        <input [disabled]="signUpForm.invalid" class="btn" type="submit" value="SIGN UP" style="background-color: #89CFF0; color: white;" />
 
-                            <div class="form-group">
-                                <p>Telefono de contacto</p>
-                                <input type="text" formControlName="telefono" class="form-control" placeholder="Ingreseo su numero de telefono" autofocus>
-                                <div class=" alert-danger " *ngIf="telefonoInvalido">
-                                    <div class="container-error-message">
-                                        <small>Telefono invalido </small>
-                                    </div>
-                                </div>
-                            </div>
+                        <a class="nav-link" routerLink="/login" aria-current="page"><small>¿Ya tenes cuenta?</small></a>
+                    </form>
 
-                            <div class="form-group">
-                                <p>Localidad</p>
-                                <input type="text" formControlName="localidad" class="form-control" placeholder="Ingrese su localidad" autofocus>
-                                <div class=" alert-danger " *ngIf="localidadInvalido">
-                                    <div class="container-error-message">
-                                        <small>Localidad invalida </small>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="container">
-                                <a class="nav-link" routerLink="/login" aria-current="page" href="#">¿Ya tiene cuenta? / Ingresar</a>
-                            </div>
-
-                            <div class="container">
-                                <input class="btn btn-primary btn-block" type="submit" value="Registrarse" />
-                            </div>
-                        </form>
-
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-    </script>
-
-
-
-</body>
-
-</html>
+</div>

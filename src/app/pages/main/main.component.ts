@@ -12,6 +12,8 @@ export class MainComponent implements OnInit, OnDestroy {
   libros: any[] = []
   librosSlideShow: any[] = []
 
+  
+  constructor(private librosService: LibrosService, private authService:AuthService) { }
 
   @HostListener('window:scroll',['$event'])
   onScroll(){
@@ -28,11 +30,9 @@ export class MainComponent implements OnInit, OnDestroy {
       this.libros.push(...resp.items);
       })}}
 
-  constructor(private librosService: LibrosService, private authService:AuthService) { }
 
   ngOnInit(): void {
-    this.authService.refresh();
-
+    // this.authService.refresh();
     this.librosService.buscarLibrosAleatorios()
     .subscribe(resp=>{
       this.libros = resp.items;

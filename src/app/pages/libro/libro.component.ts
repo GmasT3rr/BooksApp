@@ -1,77 +1,123 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { ActivatedRoute,  } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { LibrosService } from '../../services/libros.service';
 import { FirebaseService } from '../../services/firebase.service';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-libro',
   templateUrl: './libro.component.html',
   styleUrls: ['./libro.component.css']
 })
+
+
 export class LibroComponent implements OnInit, OnDestroy {
 
+  public  libro:any
+  private user:any
+  private currentUserEmail:string
+  private userLoans:any[] = []
+  private alreadyLoaned:any = ''
+  public  exists= false
 
   constructor(private activatedRoute: ActivatedRoute,
     private librosService: LibrosService,
-     private firebase:FirebaseService,
-     private afs: AngularFirestore,) { }
+     private firebaseService:FirebaseService,
+     private authService:AuthService) { }
   
-  public libro:any;
-  private DNI:any[] = [] 
-  private email = localStorage.getItem('Email')
+
 
 
   ngOnInit(): void {
-    this.buscarLibroPorId()
-    this.obtenerDNI()
-    this.tablaPrestamos()
+    this.getCurrentUser()
+    this.getCurrentBook()
+    // this.getUserLoans()
+    // this.loanExists()
+
+  }
+  ngOnDestroy(): void {
+    this.librosService.resetearIdLibro()
   }
   
-  buscarLibroPorId(){
+
+  //Trae el libro actual de la API
+  getCurrentBook(){
     const id = this.activatedRoute.snapshot.params['id'];
-    // console.log('libro-component esta es la id',id)
     this.librosService.id = id
-    this.librosService.buscarLibroPorId()
+    this.librosService.searchBookById()
     .subscribe(libro=>{
-    // console.log('libro-component: Datos del libro ->',libro)
     this.libro = libro
+    this.getUserLoans()
+    this.loanExists()
+
     })
   }
 
-  obtenerDNI(){
-    this.firebase.obtenerUsuarioFirebase()
-    .subscribe(resp=>{
-      this.DNI = []
-      resp.forEach((element:any) => {
-      if(this.email === element.payload.doc.data().email)
-        this.DNI.push({
-          dni: element.payload.doc.data().dni
-        })
-      });
-       console.log('libro-component: Traer usuario DNI  ->',this.DNI[0].dni)
-    })
-  }
 
-  ngOnDestroy(): void {
-      this.librosService.resetearIdLibro()
-  }
-
-  guardarPrestamo(){
-    const dniUsuario = this.DNI[0].dni
-    this.firebase.guardarPrestamo(this.libro.id, dniUsuario)
-  }
-
-  guardarInfoLibro(){
-    const dniUsuario = this.DNI[0].dni
-    this.firebase.guardarInfoLibro(this.libro,dniUsuario) 
+  // Guarda el prestamo realizado en Firebase
+  saveLoan(){
+    const userEmail = this.user.email
+    if( !this.exists){
+      this.firebaseService.saveBookToUser(this.libro.id, userEmail)
+      this.firebaseService.saveBookToDB(this.libro,userEmail)
       Swal.fire({
         title: 'Gracias!',
         text: 'Ya puede ver su pedido en su perfil',
         timer: 2000
+    }).then(()=>
+    this.authService.refresh()
+    );
+    } else{
+      Swal.fire({
+        title: 'Lo sentimos',
+        text: 'Usted ya posee este libro',
+        timer: 2000
+    }).then(()=>
+      this.authService.refresh()
+    );
+    }
+  }
+  
+  //Devuelve el usuario logueado
+  async getCurrentUser(){
+    (await this.authService.checkCurrentUser())
+     .subscribe((user:any)=>{
+        this.user = user
+        this.currentUserEmail = user.email      
+     });
+  }
+
+  //Trae los prestamos de este usuario para mas adelante compararlos
+  async getUserLoans(){
+      (await this.firebaseService.getLoans()).subscribe((loans:any)=>{
+      loans.forEach((res:any) => {
+        const book=res.payload.doc.data()
+        if(book.email === this.currentUserEmail )
+        {        
+          this.userLoans.push(book)
+        }
+        if(book.email === this.currentUserEmail && book.isbn === this.libro.id )
+        {        
+          this.alreadyLoaned = book
+        }
+      });
     })
   }
+
+  //Despues de un segundo verifica si el usuario posee este libro, a fin de evitar guardar libros duplicados
+  loanExists(){
+      Swal.showLoading()
+  setTimeout(() => {
+    if (this.libro.id === this.alreadyLoaned.isbn) {
+      this.exists = true;
+    }
+    console.log(this.exists);
+    Swal.close();
+  }, 2000);
+
+  }
+
 
   //----Modal
 
@@ -83,42 +129,4 @@ export class LibroComponent implements OnInit, OnDestroy {
     this.displayStyle = "none";
   }
 
-  //------Escribir en firebase pruebaa
-
-
-  agregarLibrosIngreasados(){
-    this.firebase.guardarLibrosIngresados(this.libro.id,'0')
-  }
-
-  //-------------------------------------------------//
-  tabla:any
-  tablaPrestamos(){
-    this.firebase.obtenerLibrosIngresados().subscribe(tabla =>{
-      this.tabla=tabla
-      console.log('libros en prestamo',this.tabla)
-    })
-  }
-  
-
-
-
-  // public librosDelUsuario: any[] = []
-
-  // getLibrosDelUsuario(){
-  //   this.firebase.obtenerLibroFirebase()
-  //   .subscribe(resp=>{
-  //     this.librosDelUsuario = []
-  //     resp.forEach((element:any) => {
-  //       if(this.DNI[0].dni === element.payload.doc.data().dni  ){
-  //         this.librosDelUsuario.push({
-  //           ... element.payload.doc.data()
-  //         }) 
-  //       }
-  //     });
-  //   })
-  //   //  console.log('Perfil-component: Libros del usuario  ->',this.librosDelUsuario)
-  // }
-
-
-  
 }

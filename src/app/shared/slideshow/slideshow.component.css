@@ -1,0 +1,40 @@
+.swiper-container {
+    height: auto;
+    width: auto;
+    /* border-radius: 15px;
+    background-color: #89CFF0; */
+}
+
+.swiper-slide {
+    height: 350px;
+    width: 100%;
+}
+
+::placeholder {
+    color: white;
+}
+
+.swiper-button-prev .swiper-button-next {
+    color: #89CFF0;
+    /* background-color: #89CFF0; */
+}
+
+.book-img img {
+    height: 350px;
+    width: 300px;
+}
+
+.libro-descripcion {
+    background-color: rgb(0, 0, 0, 0.4);
+    bottom: 0;
+    padding: 5px 30px;
+    position: absolute;
+    width: 100%;
+}
+
+@media screen and (max-width:1500px) {
+    .book-img img {
+        height: 325px;
+        width: 225px;
+    }
+}

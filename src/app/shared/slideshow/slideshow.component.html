@@ -1,0 +1,20 @@
+<div class="swiper-container  ">
+    <div class=" swiper-wrapper ">
+        <div *ngFor="let libro of libros" class="swiper-slide ">
+            <div class="row align-items-center " style="margin-right: 80px; margin-left: 80px;">
+                <div class="col-md-6 book-img">
+                    <img src="http://books.google.com/books/content?id={{libro.id}}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api ">
+                </div>
+                <div class="col-md-6">
+                    <h3>{{libro.volumeInfo.title}}</h3>
+                    <p *ngIf="libro.volumeInfo.description; else noDescp">{{libro.volumeInfo.description | slice:0:100}}...</p>
+                    <ng-template #noDescp> Sin descripcion
+                    </ng-template>
+                    <input class="btn btn-primary" routerLinkActive="active" (click)="clickEnLibro(libro)" placeholder="Leer más">
+                    <div (click)="onSlidePrev()" class="swiper-button-prev"></div>
+                    <div (click)="onSlideNext()" class="swiper-button-next"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

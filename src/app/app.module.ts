@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ComponentsModule } from './components/components.module';
+import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './pages/login/login.component';
 import { MainComponent } from './pages/main/main.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
@@ -26,21 +26,18 @@ import { LibroComponent } from './pages/libro/libro.component';
     RegistrarseComponent,
     BuscarComponent,
     LibroComponent,
-    
-    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ComponentsModule,
-    ReactiveFormsModule,
+    SharedModule,
+        ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     HttpClientModule,
     FormsModule,
   ],
-  providers: [AuthService
-  ],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

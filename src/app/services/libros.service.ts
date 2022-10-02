@@ -20,7 +20,6 @@ export class LibrosService {
   //Busca todos los libros recientes
   buscarLibrosAleatorios():Observable<any>{
     this.cargando=true
-
     return this.hhtp.get (`${this.url}/volumes?q=orderBy=relevance&startIndex=${this.indice}&${this.cantidad}&${this.apiKey}`)
     .pipe(tap(()=>{
       this.cargando = false; 
@@ -30,24 +29,19 @@ export class LibrosService {
   
   //Busca el libro especifico que hayas clickeado
   buscarLibroEspecifico(texto: string){
-    
     this.titulo = texto
     this.cargando=true
     return this.hhtp.get (`${this.url}/volumes?q=intitle=${this.titulo}&startIndex=${this.indice}&maxResults=12&${this.apiKey}`)
     .pipe(tap(()=>{
       this.cargando = false; 
     }));
-
   }
   
   //Busca el libro por isbn<->id
-  buscarLibroPorId(){
-    
+  searchBookById(){
     return this.hhtp.get (`${this.url}/volumes/${this.id}`)
-
   }
   
-
   resetearIndiceDeBusqueda(){
     this.indice = 0;
   }

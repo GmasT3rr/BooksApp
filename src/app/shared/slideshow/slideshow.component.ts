@@ -15,16 +15,19 @@ export class SlideshowComponent implements OnInit, AfterViewInit {
 
   private mySwiper: Swiper;
 
+
   constructor(private librosService: LibrosService,private router:Router) { }
 
   ngAfterViewInit(): void {
   this.mySwiper = new Swiper('.swiper-container', {
   loop: true,
+  spaceBetween: 4000,
   
 }); 
 }
 
   ngOnInit(): void {
+    
   }
 
 

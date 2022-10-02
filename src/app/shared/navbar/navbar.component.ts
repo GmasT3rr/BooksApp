@@ -8,14 +8,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-  constructor(private auth: AuthService, private router:Router) { }
+  user:boolean
+  constructor(private authService: AuthService, private router:Router) { }
 
   ngOnInit(): void {
+    this.checkUser()
   }
 
+  async checkUser(){
+    (await this.authService.checkCurrentUser()).subscribe(res=>{
+      if(res === null) {
+        this.user=false
+      }else this.user=true
+    })
+  }
   salir(){
-    this.auth.logOutDePrueba();
+    this.authService.logOut();
     this.router.navigateByUrl('/login')
   }
 

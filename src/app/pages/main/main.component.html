@@ -1,20 +1,20 @@
-<div class="text-center ">
-    <br>
-    <h2>Libros mas vistos</h2>
-    <hr>
-
-</div>
-
-<div class="slider text-center" *ngIf="libros.length > 0">
-    <app-slideshow [libros]="librosSlideShow"></app-slideshow>
-</div>
-
-<div class="text-center ">
-    <br>
-    <h2>Listado de libros</h2>
-    <hr>
-
-</div>
-<div class=" text-center">
-    <app-libros-poster *ngIf="libros.length > 0" [libros]="libros"></app-libros-poster>
+<div class="bg">
+    <div class="text-center">
+        <br>
+        <h2><strong>Libros destacados</strong></h2>
+        <hr>
+    </div>
+    <div class="slider text-center" *ngIf="libros">
+        <div class="col-6 offset-3">
+            <app-slideshow [libros]="librosSlideShow"></app-slideshow>
+        </div>
+    </div>
+    <div class="text-center">
+        <br>
+        <h2><strong>Listado de libros</strong></h2>
+        <hr>
+    </div>
+    <div class="text-center">
+        <app-libros-poster *ngIf="libros" [books]="libros"></app-libros-poster>
+    </div>
 </div>

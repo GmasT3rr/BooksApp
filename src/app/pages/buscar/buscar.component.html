@@ -1,11 +1,11 @@
-<div>
+<div class="text-center mt-5 mb-5">
     <br>
-    <h1>Buscar libro: <small>"{{texto}}"</small></h1>
+    <h1>Resultados para: <strong>"{{texto}}"</strong></h1>
     <hr>
 </div>
 
 <div class="row">
     <div class="container">
-        <app-libros-poster [libros]="libros"></app-libros-poster>
+        <app-libros-poster [books]="searchedBooks"></app-libros-poster>
     </div>
 </div>
