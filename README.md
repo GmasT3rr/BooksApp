@@ -1,3 +1,20 @@
+#DISCLAIMER
+This project was carried out as an evaluation to enter the position of software developer. It was required to use firebase and angular to create an app with the following requirements:
+
+- Description:
+A portal should be created where people can sign up to borrow books from a library.
+
+- Portal functionality:
+User searches for a book, requests it and it appears in their list of requested books or profile. If the user already has it, he will not be able to ask for it again.
+
+- Portal display:
+Navbar at the top.
+Each book shows its cover, name, first 100 characters of the description.
+Show the books in columns.
+Do an infinite scroll.
+
+
+
 # AppLibros
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
