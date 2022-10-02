@@ -67,6 +67,8 @@ export class RegistrarseComponent  {
             icon: 'success',
             title:'Registro exitoso',
           })
+        this.router.navigateByUrl("/main")
+
     })
     .catch(err =>{
         Swal.fire({

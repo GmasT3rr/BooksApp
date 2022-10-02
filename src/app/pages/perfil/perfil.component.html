@@ -1,18 +1,18 @@
-<div class="text-center">
-    <br>
-    <h1><strong>Tus libros</strong></h1>
+<div class="text-center" style="background: rgba(137, 207, 240, .3); margin-top: 120px; font-weight: bold;">
+    <hr>
+    <h1>Mis libros</h1>
     <hr>
 </div>
 
-<div class="container">
+<div class="container mt-5" style="margin-bottom: 100px;">
     <div class="row">
-        <div class="col-md-3 mb-5 " *ngFor="let libro of userBooks; let i=index">
-            <div class="row">
-                <img class="bookImg libros-poster-image" [src]="libro.volumeInfo.imageLinks.smallThumbnail">
-                <h3>{{libro.volumeInfo.title}}</h3>
+        <div class="col-md-3 text-center" *ngFor="let libro of userBooks; let i=index">
+            <img class="bookImg libros-poster-image" [src]="libro.volumeInfo.imageLinks.smallThumbnail">
+            <div class="mt-5">
+                <h3>{{libro.volumeInfo.title | slice:0:100}}</h3>
                 <p>{{libro.volumeInfo.description | slice:0:100}}...</p>
             </div>
-            <input (click)="clickEnLibro(libro)" class="btn btn-primary" type="submit" value="Mas info" />
+            <input (click)="clickEnLibro(libro)" class="btn btn-primary" type=" submit " value="Mas info " />
         </div>
     </div>
 </div>

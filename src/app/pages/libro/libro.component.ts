@@ -14,7 +14,7 @@ import { AuthService } from '../../services/auth.service';
 
 export class LibroComponent implements OnInit, OnDestroy {
 
-  public  libro:any
+  public  book:any
   private user:any
   private currentUserEmail:string
   private userLoans:any[] = []
@@ -47,7 +47,7 @@ export class LibroComponent implements OnInit, OnDestroy {
     this.librosService.id = id
     this.librosService.searchBookById()
     .subscribe(libro=>{
-    this.libro = libro
+    this.book = libro
     this.getUserLoans()
     this.loanExists()
 
@@ -59,8 +59,8 @@ export class LibroComponent implements OnInit, OnDestroy {
   saveLoan(){
     const userEmail = this.user.email
     if( !this.exists){
-      this.firebaseService.saveBookToUser(this.libro.id, userEmail)
-      this.firebaseService.saveBookToDB(this.libro,userEmail)
+      this.firebaseService.saveBookToUser(this.book.id, userEmail)
+      this.firebaseService.saveBookToDB(this.book,userEmail)
       Swal.fire({
         title: 'Gracias!',
         text: 'Ya puede ver su pedido en su perfil',
@@ -97,7 +97,7 @@ export class LibroComponent implements OnInit, OnDestroy {
         {        
           this.userLoans.push(book)
         }
-        if(book.email === this.currentUserEmail && book.isbn === this.libro.id )
+        if(book.email === this.currentUserEmail && book.isbn === this.book.id )
         {        
           this.alreadyLoaned = book
         }
@@ -105,14 +105,14 @@ export class LibroComponent implements OnInit, OnDestroy {
     })
   }
 
-  //Despues de un segundo verifica si el usuario posee este libro, a fin de evitar guardar libros duplicados
+  //Despues de dos segundos verifica si el usuario posee este libro, a fin de evitar guardar libros duplicados
   loanExists(){
       Swal.showLoading()
   setTimeout(() => {
-    if (this.libro.id === this.alreadyLoaned.isbn) {
+    if (this.book.id === this.alreadyLoaned.isbn) {
       this.exists = true;
     }
-    console.log(this.exists);
+    // console.log(this.exists);
     Swal.close();
   }, 2000);
 

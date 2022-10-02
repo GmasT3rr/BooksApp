@@ -1,22 +1,31 @@
 .navbar-expand {
-    /* background: rgba(137, 207, 240, 1) !important; */
-    background-color: black !important;
+    background: rgba(137, 207, 240, 1) !important;
+    /* background-color: black !important; */
     width: 100% !important;
 }
 
 .navbar {
-    /* background: rgba(137, 207, 240, 1) !important; */
-    background-color: black !important;
+    background: rgba(137, 207, 240, 1) !important;
+    /* background-color: black !important; */
 }
 
 .nav-link {
-    color: white;
+    color: black;
+    font-weight: bold;
 }
 
 .form-control {
-    background-color: white;
+    color: black;
+    font-weight: bold;
+}
+
+.searchBtn {
+    color: white;
+    font-weight: bold;
 }
 
 .logOut {
+    color: white;
+    font-weight: bold;
     margin-right: 50px !important;
 }

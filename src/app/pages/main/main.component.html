@@ -1,20 +1,20 @@
 <div class="bg">
-    <div class="text-center">
-        <br>
-        <h2><strong>Libros destacados</strong></h2>
+    <div class="text-center" style="background: rgba(137, 207, 240, .3); margin-top: 70px;margin-bottom: 40px; font-weight: bold;">
+        <hr>
+        <h1>Libros destacados</h1>
         <hr>
     </div>
-    <div class="slider text-center" *ngIf="libros">
+    <div class="slider text-center" *ngIf="books">
         <div class="col-6 offset-3">
             <app-slideshow [libros]="librosSlideShow"></app-slideshow>
         </div>
     </div>
-    <div class="text-center">
-        <br>
-        <h2><strong>Listado de libros</strong></h2>
+    <div class="text-center" style="background: rgba(137, 207, 240, .3); margin-top: 50px; font-weight: bold;">
+        <hr>
+        <h1>Listado de libros</h1>
         <hr>
     </div>
     <div class="text-center">
-        <app-libros-poster *ngIf="libros" [books]="libros"></app-libros-poster>
+        <app-libros-poster *ngIf="books" [books]="books"></app-libros-poster>
     </div>
 </div>

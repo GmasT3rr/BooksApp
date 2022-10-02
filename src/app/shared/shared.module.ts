@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { LibrosPosterComponent } from './libros-poster/libros-poster.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SlideshowComponent } from './slideshow/slideshow.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -14,12 +15,14 @@ import { SlideshowComponent } from './slideshow/slideshow.component';
   declarations: [
     LibrosPosterComponent,
     NavbarComponent,
-    SlideshowComponent
+    SlideshowComponent,
+    FooterComponent
   ],
   exports:[
     LibrosPosterComponent,
     NavbarComponent,
-    SlideshowComponent
+    SlideshowComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,

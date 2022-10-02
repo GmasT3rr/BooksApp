@@ -22,12 +22,12 @@ export class NavbarComponent implements OnInit {
       }else this.user=true
     })
   }
-  salir(){
-    this.authService.logOut();
-    this.router.navigateByUrl('/login')
+  async logOut(){
+   await this.authService.logOut();
+   this.authService.refresh()
   }
 
-  buscarLibro(texto:string){
+  searchBook(texto:string){
   texto = texto.trim();
   if(texto.length===0){return;}
 

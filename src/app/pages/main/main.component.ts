@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class MainComponent implements OnInit, OnDestroy {
 
-  libros: any[] = []
+  books: any[] = []
   librosSlideShow: any[] = []
 
   
@@ -27,7 +27,7 @@ export class MainComponent implements OnInit, OnDestroy {
       this.librosService.indice +=12;
       this.librosService.buscarLibrosAleatorios()
       .subscribe((resp)=>{
-      this.libros.push(...resp.items);
+      this.books.push(...resp.items);
       })}}
 
 
@@ -35,7 +35,7 @@ export class MainComponent implements OnInit, OnDestroy {
     // this.authService.refresh();
     this.librosService.buscarLibrosAleatorios()
     .subscribe(resp=>{
-      this.libros = resp.items;
+      this.books = resp.items;
       this.librosSlideShow = resp.items;
     })
   }

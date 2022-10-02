@@ -27,7 +27,7 @@ export class AuthService {
     return this.angularFireAuth.authState
   }
   // Desloguear usuario  
-  logOut(){
+  async logOut(){
     this.angularFireAuth.signOut();
   }
 
