@@ -1,5 +1,11 @@
 #DISCLAIMER
-This project was carried out as an evaluation to enter the position of software developer. It was required to use firebase and angular to create an app with the following requirements:
+
+Link to te project https://applibros-ramallo.web.app
+It doesn't have mobile visualizations done, since it didn't catch up with time before, and right now, I'm pretty busy to fix it.
+
+
+This project was carried out as an evaluation to enter the position of software developer.
+A deadline of 2 weeks was given and it was required to use firebase and angular to create an application with the following requirements:
 
 - Description:
 A portal should be created where people can sign up to borrow books from a library.
