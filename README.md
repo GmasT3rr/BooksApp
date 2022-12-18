@@ -1,11 +1,11 @@
 #DISCLAIMER
 
 Link to the page project: https://applibros-ramallo.web.app
-It doesn't have mobile views done because that would have required me to exceed the deadline, and right now, I'm pretty busy to fix it.
+It doesn't have mobile views done because that would have required me to exceed the deadline, and right now, I'm pretty busy to fix it, so I abandoned the project.
 
 
 This project was carried out as an evaluation to enter the position of software developer.
-A deadline of 2 weeks was given and it was required to use firebase and angular to create an application with the following requirements:
+A deadline of 3 weeks was given and it was required to use firebase and angular to create an application with the following requirements:
 
 - Description:
 A portal should be created where people can sign up to borrow books from a library.
